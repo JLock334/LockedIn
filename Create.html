@@ -66,38 +66,47 @@
                     var worksheet = workbook.Sheets[sheetName];
                     var jsonData = XLSX.utils.sheet_to_json(worksheet);
 
-                    // Add new user data
-                    jsonData.push({ username: username, password: password });
+                    // Check if username already exists
+                    var userExists = jsonData.some(function (user) {
+                        return user.username === username;
+                    });
 
-                    // Convert JSON back to worksheet
-                    var newWorksheet = XLSX.utils.json_to_sheet(jsonData);
+                    if (userExists) {
+                        alert('Username already exists. Please choose another.');
+                    } else {
+                        // Add new user data
+                        jsonData.push({ username: username, password: password });
 
-                    // Create a new workbook
-                    var newWorkbook = XLSX.utils.book_new();
-                    XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, sheetName);
+                        // Convert JSON back to worksheet
+                        var newWorksheet = XLSX.utils.json_to_sheet(jsonData);
 
-                    // Convert workbook to binary XLSX format
-                    var wbout = XLSX.write(newWorkbook, { bookType: 'xlsx', type: 'binary' });
+                        // Create a new workbook
+                        var newWorkbook = XLSX.utils.book_new();
+                        XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, sheetName);
 
-                    // Function to convert s to array buffer
-                    function s2ab(s) {
-                        var buf = new ArrayBuffer(s.length);
-                        var view = new Uint8Array(buf);
-                        for (var i = 0; i < s.length; i++) {
-                            view[i] = s.charCodeAt(i) & 0xFF;
+                        // Convert workbook to binary XLSX format
+                        var wbout = XLSX.write(newWorkbook, { bookType: 'xlsx', type: 'binary' });
+
+                        // Function to convert s to array buffer
+                        function s2ab(s) {
+                            var buf = new ArrayBuffer(s.length);
+                            var view = new Uint8Array(buf);
+                            for (var i = 0; i < s.length; i++) {
+                                view[i] = s.charCodeAt(i) & 0xFF;
+                            }
+                            return buf;
                         }
-                        return buf;
+
+                        // Save Excel file
+                        var blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
+                        saveAs(blob, 'users.xlsx'); // Download the updated Excel file
+
+                        alert('Account created successfully!');
+
+                        // Reset form fields
+                        document.getElementById('username').value = '';
+                        document.getElementById('password').value = '';
                     }
-
-                    // Save Excel file
-                    var blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
-                    saveAs(blob, 'users/users.xlsx'); // Download the updated Excel file
-
-                    alert('Account created successfully!');
-
-                    // Reset form fields
-                    document.getElementById('username').value = '';
-                    document.getElementById('password').value = '';
                 } else {
                     alert('Failed to load users.xlsx');
                 }
