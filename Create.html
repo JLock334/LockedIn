@@ -23,19 +23,77 @@
     <h1>LockedIn Photography</h1>
     <main>
         <section>
+
             <h1>Create your Account</h1>
-            <!-- Insert your login form here -->
-            <form>
+            <form id="createAccountForm">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username"><br><br>
+                <input type="text" id="username" name="username" required><br><br>
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password"><br><br>
-                <input type="submit" value="Login">
+                <input type="password" id="password" name="password" required><br><br>
+                <input type="submit" value="Create Account">
             </form>
         </section>
     </main>
     <footer>
         <p>&copy; 2024 Your Company. All rights reserved.</p>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <script>
+        document.getElementById('createAccountForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'users/users.xlsx', true);
+            xhr.responseType = 'arraybuffer';
+
+            xhr.onload = function (e) {
+                var arraybuffer = xhr.response;
+                var data = new Uint8Array(arraybuffer);
+                var arr = [];
+                for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                var bstr = arr.join("");
+
+               
+                var workbook = XLSX.read(bstr, { type: "binary" });
+                var sheetName = workbook.SheetNames[0]; 
+                var worksheet = workbook.Sheets[sheetName];
+                var jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+                
+                jsonData.push({ username: username, password: password });
+
+                
+                var newWorkbook = XLSX.utils.book_new();
+                var newWorksheet = XLSX.utils.json_to_sheet(jsonData);
+                XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, sheetName);
+
+                
+                var wbout = XLSX.write(newWorkbook, { bookType: 'xlsx', type: 'array' });
+
+               
+                var blob = new Blob([wbout], { type: 'application/octet-stream' });
+                var url = URL.createObjectURL(blob);
+
+                
+                var a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'users.xlsx';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+                
+                alert('Account created successfully! You can now login.');
+                window.location.href = 'Sign In.html';
+            };
+
+            xhr.send();
+        });
+    </script>
 </body>
 </html>
