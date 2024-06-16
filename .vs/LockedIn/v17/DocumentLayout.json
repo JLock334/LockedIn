@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\login.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:login.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Sign In.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Sign In.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\login.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:login.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\Source\\Repos\\JLock334\\LockedIn\\Create.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -54,11 +54,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "login.php",
               "DocumentMoniker": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\login.php",
               "RelativeDocumentMoniker": "login.php",
@@ -162,13 +162,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Sign In.html",
               "DocumentMoniker": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Sign In.html",
               "RelativeDocumentMoniker": "Sign In.html",
               "ToolTip": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Sign In.html",
               "RelativeToolTip": "Sign In.html",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAmwBsAAAAjAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAACgAAABUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2024-06-16T21:22:59.506Z",
               "EditorCaption": ""
