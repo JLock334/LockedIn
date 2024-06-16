@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\Source\\Repos\\JLock334\\LockedIn\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Sign In.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Sign In.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\Source\\Repos\\JLock334\\LockedIn\\Create.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Create.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\Source\\Repos\\JLock334\\LockedIn\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Standard.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -17,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Customized.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Customized.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Sign In.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Sign In.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\cart.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -46,11 +50,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\Shadow\\Source\\Repos\\JLock334\\LockedIn\\index.html",
               "RelativeDocumentMoniker": "index.html",
@@ -63,7 +67,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Standard.html",
               "DocumentMoniker": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Standard.html",
               "RelativeDocumentMoniker": "Standard.html",
@@ -76,7 +80,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Customized.html",
               "DocumentMoniker": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Customized.html",
               "RelativeDocumentMoniker": "Customized.html",
@@ -89,7 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Profile.html",
               "DocumentMoniker": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Profile.html",
               "RelativeDocumentMoniker": "Profile.html",
@@ -102,7 +106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "About.html",
               "DocumentMoniker": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\About.html",
               "RelativeDocumentMoniker": "About.html",
@@ -115,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Contact.html",
               "DocumentMoniker": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Contact.html",
               "RelativeDocumentMoniker": "Contact.html",
@@ -128,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "cart.html",
               "DocumentMoniker": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\cart.html",
               "RelativeDocumentMoniker": "cart.html",
@@ -141,13 +145,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "Sign In.html",
               "DocumentMoniker": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Sign In.html",
               "RelativeDocumentMoniker": "Sign In.html",
               "ToolTip": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\Sign In.html",
               "RelativeToolTip": "Sign In.html",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAtAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAACIAAABVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2024-06-16T21:22:59.506Z",
               "EditorCaption": ""
@@ -155,12 +159,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Create.html",
+              "DocumentMoniker": "C:\\Users\\Shadow\\Source\\Repos\\JLock334\\LockedIn\\Create.html",
+              "RelativeDocumentMoniker": "Create.html",
+              "ToolTip": "C:\\Users\\Shadow\\Source\\Repos\\JLock334\\LockedIn\\Create.html",
+              "RelativeToolTip": "Create.html",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAB4AAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-06-16T21:56:26.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "style.css",
               "DocumentMoniker": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\style.css",
               "RelativeDocumentMoniker": "style.css",
               "ToolTip": "C:\\Users\\Shadow\\source\\repos\\JLock334\\LockedIn\\style.css",
               "RelativeToolTip": "style.css",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAmwCMAAAAAAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAAAmwEEAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-06-16T20:49:45.941Z",
               "EditorCaption": ""
