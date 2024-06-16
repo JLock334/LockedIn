@@ -40,59 +40,66 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
     <script>
         document.getElementById('createAccountForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault(); 
 
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
 
             
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'users/users.xlsx', true);
-            xhr.responseType = 'arraybuffer';
+            var workbook = XLSX.utils.book_new();
+            var sheetName = "users/users.xlsx"; 
+            var worksheet = XLSX.utils.json_to_sheet([]);
+            XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
 
-            xhr.onload = function (e) {
-                var arraybuffer = xhr.response;
-                var data = new Uint8Array(arraybuffer);
-                var arr = [];
-                for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-                var bstr = arr.join("");
+           
+            var request = new XMLHttpRequest();
+            request.open('GET', 'users/users.xlsx', true);
+            request.responseType = 'blob';
+            request.onload = function () {
+                var reader = new FileReader();
+                reader.readAsArrayBuffer(request.response);
+                reader.onload = function (e) {
+                    var data = new Uint8Array(reader.result);
+                    var arr = new Array();
+                    for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                    var bstr = arr.join("");
+                    var workbook = XLSX.read(bstr, { type: "binary" });
+                    var first_sheet_name = workbook.SheetNames[0];
+                    var worksheet = workbook.Sheets[first_sheet_name];
 
-               
-                var workbook = XLSX.read(bstr, { type: "binary" });
-                var sheetName = workbook.SheetNames[0]; 
-                var worksheet = workbook.Sheets[sheetName];
-                var jsonData = XLSX.utils.sheet_to_json(worksheet);
+                   
+                    var jsonData = XLSX.utils.sheet_to_json(worksheet);
 
-                
-                jsonData.push({ username: username, password: password });
+                    
+                    var newUser = { username: username, password: password };
+                    jsonData.push(newUser);
 
-                
-                var newWorkbook = XLSX.utils.book_new();
-                var newWorksheet = XLSX.utils.json_to_sheet(jsonData);
-                XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, sheetName);
+                   
+                    var newWorksheet = XLSX.utils.json_to_sheet(jsonData);
 
-                
-                var wbout = XLSX.write(newWorkbook, { bookType: 'xlsx', type: 'array' });
+                    
+                    var newWorkbook = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, first_sheet_name);
 
-               
-                var blob = new Blob([wbout], { type: 'application/octet-stream' });
-                var url = URL.createObjectURL(blob);
+                    
+                    var wbout = XLSX.write(newWorkbook, { bookType: 'xlsx', type: 'binary' });
+                    function s2ab(s) {
+                        var buf = new ArrayBuffer(s.length);
+                        var view = new Uint8Array(buf);
+                        for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+                        return buf;
+                    }
+                    var blob = new Blob([s2ab(wbout)], { type: "application/octet-stream" });
+                    saveAs(blob, 'users/users.xlsx'); 
 
-                
-                var a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = 'users.xlsx';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+                    alert('Account created successfully!');
 
-                
-                alert('Account created successfully! You can now login.');
-                window.location.href = 'Sign In.html';
+                    // Reset form fields
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                }
             };
-
-            xhr.send();
+            request.send();
         });
     </script>
 </body>
