@@ -32,3 +32,17 @@ li a:hover:not(.active){
 .active{
     background-color:seagreen;
 }
+
+
+.image-box {
+    display: inline-block;
+    width: 45%; 
+    margin: 10px;
+    text-align: center;
+}
+
+    .image-box img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
