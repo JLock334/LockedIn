@@ -11,3 +11,23 @@ p {
     font-family: verdana;
     font-size: 20px;
 }
+
+ul{
+    list-style-type:none;
+    margin:auto;
+    padding:8px;
+    background-color:white;
+    overflow:hidden;
+}
+li {
+    display: inline;
+    text-align:center;
+}
+
+li a:hover:not(.active){
+    background-color:grey;
+}
+
+.active{
+    background-color:seagreen;
+}
