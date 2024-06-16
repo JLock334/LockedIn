@@ -48,60 +48,56 @@
             // Load existing data from users.xlsx (if any)
             var xhr = new XMLHttpRequest();
             xhr.open('GET', 'users/users.xlsx', true);
-            xhr.responseType = 'blob';
+            xhr.responseType = 'arraybuffer';
 
             xhr.onload = function (e) {
                 if (this.status == 200) {
-                    var blob = this.response;
-                    var reader = new FileReader();
+                    var arrayBuffer = this.response;
+                    var data = new Uint8Array(arrayBuffer);
+                    var arr = [];
+                    for (var i = 0; i < data.length; ++i) {
+                        arr[i] = String.fromCharCode(data[i]);
+                    }
+                    var bstr = arr.join('');
 
-                    reader.onload = function (event) {
-                        var data = event.target.result;
-                        var workbook = XLSX.read(data, { type: 'binary' });
+                    // Convert XLSX to JSON
+                    var workbook = XLSX.read(bstr, { type: 'binary' });
+                    var sheetName = workbook.SheetNames[0]; // Assuming the first sheet is users
+                    var worksheet = workbook.Sheets[sheetName];
+                    var jsonData = XLSX.utils.sheet_to_json(worksheet);
 
-                        // Get the first sheet name
-                        var sheetNameList = workbook.SheetNames;
-                        var sheetName = sheetNameList[1];
+                    // Add new user data
+                    jsonData.push({ username: username, password: password });
 
-                        // Convert the sheet to JSON object
-                        var worksheet = workbook.Sheets[sheetName];
-                        var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                    // Convert JSON back to worksheet
+                    var newWorksheet = XLSX.utils.json_to_sheet(jsonData);
 
-                        // Add new user data
-                        jsonData.push([username, password]);
+                    // Create a new workbook
+                    var newWorkbook = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, sheetName);
 
-                        // Convert JSON object back to worksheet
-                        var newWorksheet = XLSX.utils.aoa_to_sheet(jsonData);
+                    // Convert workbook to binary XLSX format
+                    var wbout = XLSX.write(newWorkbook, { bookType: 'xlsx', type: 'binary' });
 
-                        // Create new workbook
-                        var newWorkbook = XLSX.utils.book_new();
-                        XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, sheetName);
-
-                        // Convert workbook to binary XLSX format
-                        var wbout = XLSX.write(newWorkbook, { bookType: 'xlsx', type: 'binary' });
-
-                        // Function to convert s to array buffer
-                        function s2ab(s) {
-                            var buf = new ArrayBuffer(s.length);
-                            var view = new Uint8Array(buf);
-                            for (var i = 0; i < s.length; i++) {
-                                view[i] = s.charCodeAt(i) & 0xFF;
-                            }
-                            return buf;
+                    // Function to convert s to array buffer
+                    function s2ab(s) {
+                        var buf = new ArrayBuffer(s.length);
+                        var view = new Uint8Array(buf);
+                        for (var i = 0; i < s.length; i++) {
+                            view[i] = s.charCodeAt(i) & 0xFF;
                         }
+                        return buf;
+                    }
 
-                        // Save Excel file
-                        var blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
-                        saveAs(blob, 'users.xlsx'); // Download the updated Excel file
+                    // Save Excel file
+                    var blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
+                    saveAs(blob, 'users/users.xlsx'); // Download the updated Excel file
 
-                        alert('Account created successfully!');
+                    alert('Account created successfully!');
 
-                        // Reset form fields
-                        document.getElementById('username').value = '';
-                        document.getElementById('password').value = '';
-                    };
-
-                    reader.readAsBinaryString(blob);
+                    // Reset form fields
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
                 } else {
                     alert('Failed to load users.xlsx');
                 }
