@@ -42,14 +42,10 @@
         document.getElementById('createAccountForm').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent form submission
 
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
+            var username = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value.trim();
 
             // Load existing data from users.xlsx (if any)
-            var workbook = XLSX.utils.book_new();
-            var sheetName = "users/users.xlsx"; // Adjust the sheet name as per your Excel file
-
-            // Check if users.xlsx exists in the users folder
             var xhr = new XMLHttpRequest();
             xhr.open('GET', 'users/users.xlsx', true);
             xhr.responseType = 'blob';
@@ -70,6 +66,16 @@
                         // Convert the sheet to JSON object
                         var worksheet = workbook.Sheets[sheetName];
                         var jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+                        // Check if the username already exists
+                        var existingUser = jsonData.find(function (user) {
+                            return user.username === username;
+                        });
+
+                        if (existingUser) {
+                            alert('Username already exists. Please choose a different username.');
+                            return;
+                        }
 
                         // Add new user data
                         var newUser = { username: username, password: password };
@@ -97,8 +103,7 @@
 
                         // Save Excel file
                         var blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
-                        saveAs(blob, 'users/users.xlsx'); // Download the updated Excel file
-
+                        saveAs(blob, 'users/users.xlsx'
                         alert('Account created successfully!');
 
                         // Reset form fields
