@@ -85,11 +85,11 @@
             const checkoutForm = document.getElementById('checkoutForm');
 
             checkoutForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent form submission
+                event.preventDefault(); 
 
-                // Perform form validation if needed
+               
 
-                // Clear the page and show thank you message
+               
                 document.body.innerHTML = `
                     <div class="container">
                         <h2>Thank you for your purchase!</h2>
@@ -99,10 +99,10 @@
                     </div>
                 `;
 
-                // Redirect to home page after 10 seconds
+                
                 setTimeout(function() {
                     window.location.href = 'index.html';
-                }, 5000); // 10 seconds in milliseconds
+                }, 5000); 
             });
         });
     </script>

@@ -61,7 +61,7 @@
             <h2>Items in Your Cart</h2>
 
             <div id="cartItems">
-                <!-- Cart items will be dynamically added here -->
+                
             </div>
 
             <div class="cart-summary">
@@ -85,10 +85,10 @@
     </footer>
    <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Retrieve selected services from local storage
+            
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // Display selected services in cart
+           
             const cartItemsContainer = document.getElementById('cartItems');
             let cartItemsHtml = '';
             if (cart.length > 0) {
@@ -110,14 +110,14 @@
             }
             cartItemsContainer.innerHTML = cartItemsHtml;
 
-            // Function to remove item from cart
+            
             function removeItem(index) {
                 cart.splice(index, 1);
                 localStorage.setItem('cart', JSON.stringify(cart));
-                location.reload(); // Reload the page to reflect changes
+                location.reload(); 
             }
 
-            // Event listener for remove buttons
+            
             const removeButtons = document.querySelectorAll('.remove-btn');
             removeButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -126,20 +126,19 @@
                 });
             });
 
-            // Calculate subtotal, sales tax, and total
+            
             const subtotal = cart.reduce((total, item) => total + item.price, 0);
             const salesTax = subtotal * 0.07;
             const total = subtotal + salesTax;
 
-            // Display calculated values
             document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
             document.getElementById('salesTax').textContent = `$${salesTax.toFixed(2)}`;
             document.getElementById('total').textContent = `$${total.toFixed(2)}`;
 
-            // Checkout button functionality
+            
             document.querySelector('.checkout-btn').addEventListener('click', function() {
-                localStorage.removeItem('cart'); // Clear cart from local storage
-                window.location.href = 'Checkout.html'; // Redirect to checkout page
+                localStorage.removeItem('cart'); 
+                window.location.href = 'Checkout.html'; 
             });
         });
     </script>

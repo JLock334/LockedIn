@@ -6,7 +6,7 @@
     <title>User Profile</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-        /* Custom styles for the profile page */
+        
          .profile-container {
             max-width: 800px;
             margin: 0 auto;
@@ -73,39 +73,39 @@
     </ul>
     <div class="profile-container">
         <h1>User Profile</h1>
-        <img src="path_to_profile_image.jpg" alt="Profile Photo" class="profile-image">
+        <img src="Imgs\profilepic.jfif" alt="Profile Photo" class="profile-image">
         <p id="username">Username</p>
         
         <h2>Select Photos to Send to Editor</h2>
         <div class="photos-container">
-            <!-- Placeholder for 6 photos -->
+            
             <div class="photo-item">
-                <img src="placeholder.jpg" alt="Photo 1">
+                <img src="Imgs\img1.jfif" alt="Photo 1">
                 <input type="checkbox" id="photo1">
                 <label for="photo1">Photo 1</label>
             </div>
             <div class="photo-item">
-                <img src="placeholder.jpg" alt="Photo 2">
+                <img src="Imgs\img2.jfif" alt="Photo 2">
                 <input type="checkbox" id="photo2">
                 <label for="photo2">Photo 2</label>
             </div>
             <div class="photo-item">
-                <img src="placeholder.jpg" alt="Photo 3">
+                <img src="Imgs\img3.jfif" alt="Photo 3">
                 <input type="checkbox" id="photo3">
                 <label for="photo3">Photo 3</label>
             </div>
             <div class="photo-item">
-                <img src="placeholder.jpg" alt="Photo 4">
+                <img src="Imgs\img4.jfif" alt="Photo 4">
                 <input type="checkbox" id="photo4">
                 <label for="photo4">Photo 4</label>
             </div>
             <div class="photo-item">
-                <img src="placeholder.jpg" alt="Photo 5">
+                <img src="Imgs\img5.jfif" alt="Photo 5">
                 <input type="checkbox" id="photo5">
                 <label for="photo5">Photo 5</label>
             </div>
             <div class="photo-item">
-                <img src="placeholder.jpg" alt="Photo 6">
+                <img src="Imgs\img6.jfif" alt="Photo 6">
                 <input type="checkbox" id="photo6">
                 <label for="photo6">Photo 6</label>
             </div>
@@ -118,9 +118,9 @@
         <p>&copy; 2024 LockedIn Photography. All rights reserved.</p>
     </footer>
 
-    <!-- Script to set username dynamically -->
+    
     <script>
-        // Function to get URL parameter by name
+       
         function getParameterByName(name, url) {
             if (!url) url = window.location.href;
             name = name.replace(/[\[\]]/g, '\\$&');
@@ -131,21 +131,21 @@
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
 
-        // Get username from URL parameter
+       
         var username = getParameterByName('username');
 
-        // Set username dynamically
+        
         if (username) {
             document.getElementById('username').textContent = username;
         }
 
-        // Function to send selected photos
+        
         function sendPhotos() {
             var selectedPhotos = [];
             var checkboxes = document.querySelectorAll('.photo-item input[type="checkbox"]:checked');
             
             checkboxes.forEach(function(checkbox) {
-                var photoId = checkbox.id.replace('photo', ''); // Get the number after 'photo'
+                var photoId = checkbox.id.replace('photo', ''); 
                 selectedPhotos.push('Photo ' + photoId);
             });
 

@@ -24,7 +24,7 @@
     <main>
         <section>
             <h1>Login</h1>
-            <!-- Insert your login form here -->
+           
             <form id="loginForm">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required><br><br>
@@ -38,18 +38,18 @@
     <footer>
         <p>&copy; 2024 LockedIn Photography. All rights reserved.</p>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script> <!-- Include xlsx.full.min.js or appropriate library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script> 
    <script>
         document.getElementById('loginForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent the form from submitting
+            event.preventDefault(); 
 
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
 
-            // Simulate authentication using local Excel data
+            
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'users/users.xlsx', true); // Load the Excel file from users/users.xlsx
-            xhr.responseType = 'arraybuffer'; // Set response type to array buffer
+            xhr.open('GET', 'users/users.xlsx', true); 
+            xhr.responseType = 'arraybuffer'; 
 
             xhr.onload = function (e) {
                 var arraybuffer = xhr.response;
@@ -58,24 +58,24 @@
                 for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
                 var bstr = arr.join("");
 
-                // Convert XLSX to JSON
+               
                 var workbook = XLSX.read(bstr, { type: "binary" });
-                var sheetName = workbook.SheetNames[0]; // Assuming the first sheet is users
+                var sheetName = workbook.SheetNames[0]; 
                 var worksheet = workbook.Sheets[sheetName];
                 var jsonData = XLSX.utils.sheet_to_json(worksheet);
 
-                // Check if username and password match
+             
                 var authenticated = jsonData.some(function (user) {
                     return user.username === username && user.password === password;
                 });
 
                 if (authenticated) {
                     alert('Login successful!');
-                    // Redirect to Profile.html and pass username
+                    
                     window.location.href = 'Profile.html?username=' + encodeURIComponent(username);
                 } else {
                     alert('Invalid username or password.');
-                    // Handle incorrect credentials
+                    
                 }
             };
 

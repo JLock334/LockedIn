@@ -57,7 +57,7 @@
 
             <form id="customPackageForm">
                 <div class="service-item">
-                    <img src="placeholder.jpg" alt="5 minute video placeholder">
+                    <img src="Imgs\5min.jfif" alt="5 minute video placeholder">
                     <input type="checkbox" id="fiveMinuteVideo" name="service" value="5 minute video, $50">
                     <label for="fiveMinuteVideo">5 minute video</label>
                     <div class="service-description">
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="service-item">
-                    <img src="placeholder.jpg" alt="10 minute video placeholder">
+                    <img src="Imgs\10min.jfif" alt="10 minute video placeholder">
                     <input type="checkbox" id="tenMinuteVideo" name="service" value="10 minute video, $100">
                     <label for="tenMinuteVideo">10 minute video</label>
                     <div class="service-description">
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="service-item">
-                    <img src="placeholder.jpg" alt="Small Studio Session placeholder">
+                    <img src="Imgs\smallstu.jfif" alt="Small Studio Session placeholder">
                     <input type="checkbox" id="smallStudioSession" name="service" value="Small Studio Session (Business Head Shot), $70">
                     <label for="smallStudioSession">Small Studio Session (Business Head Shot)</label>
                     <div class="service-description">
@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="service-item">
-                    <img src="placeholder.jpg" alt="Medium Studio Session placeholder">
+                    <img src="Imgs\mediumstu.jfif" alt="Medium Studio Session placeholder">
                     <input type="checkbox" id="mediumStudioSession" name="service" value="Medium Studio Session, $250">
                     <label for="mediumStudioSession">Medium Studio Session</label>
                     <div class="service-description">
@@ -107,25 +107,25 @@
     </footer>
      <<script>
     document.getElementById('customPackageForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); 
 
-        // Retrieve selected services
+        
         const selectedServices = Array.from(document.querySelectorAll('input[name="service"]:checked'))
             .map(service => service.value);
 
-        // Add selected items to cart
+        
         addToCart(selectedServices);
 
-        // Redirect to cart page
+        
         window.location.href = 'cart.html';
     });
 
          function addToCart(selectedServices) {
-        // Example function to add items to cart (assuming you have a cart storage mechanism)
+        
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         selectedServices.forEach(service => {
-            const price = extractPrice(service); // Extract price from service description
+            const price = extractPrice(service); 
             cart.push({
                 name: service,
                 price: price
@@ -136,9 +136,9 @@
     }
 
      function extractPrice(service) {
-        // Function to extract price from service description
-        const priceRegexStandard = /Price: \$([\d,]+)/; // Regex for Standard.html format
-        const priceRegexCustomized = /\$([\d,]+)/; // Regex for Customized.html format
+        
+        const priceRegexStandard = /Price: \$([\d,]+)/; 
+        const priceRegexCustomized = /\$([\d,]+)/; 
 
         let match;
         if (service.includes('Price: $')) {
@@ -148,10 +148,10 @@
         }
 
         if (match) {
-            // Remove commas and parse as float
+            
             return parseFloat(match[1].replace(',', ''));
         } else {
-            return 0; // Return 0 if price extraction fails
+            return 0; 
         }
     }
     </script>

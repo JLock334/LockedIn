@@ -6,7 +6,7 @@
 <title>Chat Box</title>
 <link rel="stylesheet" href="style.css" />
 <style>
-    /* Basic styling for the chat box */
+    
     .chatbox {
         width: 300px;
         border: 1px solid #ccc;
@@ -39,7 +39,7 @@
     </ul>
 <div class="chatbox">
     <div class="messages" id="chat-messages">
-        <!-- Messages will be inserted here -->
+       
     </div>
     <div class="user-input">
         <input type="text" id="user-input" placeholder="Type your message...">
@@ -48,18 +48,18 @@
 </div>
 
 <script>
-// Initialize the chat with a welcome message
+
 displayMessage("How can I assist you today?", 'bot');
 
 function sendMessage() {
     var userInput = document.getElementById('user-input').value;
     displayMessage(userInput, 'user');
 
-    // Simulate connecting to an agent after user sends a message
+    
     setTimeout(function() {
         displayMessage("Please hold on, connecting you to an agent...", 'bot');
         setTimeout(function() {
-            displayMessage("Waiting on agent", 'bot'); // Message indicating waiting on agent
+            displayMessage("Waiting on agent", 'bot'); 
         }, 1500);
     }, 1500);
 }

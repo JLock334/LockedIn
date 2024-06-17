@@ -59,9 +59,9 @@
             <h2>Standard Packages</h2>
 
             <form id="standardPackageForm">
-                <!-- Service items -->
+                
                 <div class="service-item">
-                    <img src="placeholder.jpg" alt="Wedding & Events">
+                    <img src="Imgs/Wedding.jfif" alt="Wedding & Events">
                     <input type="checkbox" id="weddingsEvents" name="service" value="Weddings & Events, Price: $2,000">
                     <label for="weddingsEvents">Weddings Videography and Photography</label>
                     <div class="service-description">
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="service-item">
-                    <img src="placeholder.jpg" alt="Group Studio Session">
+                    <img src="Imgs\Group.jfif" alt="Group Studio Session">
                     <input type="checkbox" id="Group Studio Session" name="service" value="Group Studio Session, Price: $400">
                     <label for="Group Studio Session">Group Studio Session</label>
                     <div class="service-description">
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="service-item">
-                    <img src="placeholder.jpg" alt="Event">
+                    <img src="Imgs\Event.jfif" alt="Event">
                     <input type="checkbox" id="Event" name="service" value="Event Videos and Photography, Price: $950">
                     <label for="Event">Event Videos and Photography</label>
                     <div class="service-description">
@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="service-item">
-                    <img src="placeholder.jpg" alt="Graduation">
+                    <img src="Imgs\Graduation.jfif" alt="Graduation">
                     <input type="checkbox" id="Graduation" name="service" value="Graduation, Price: $400">
                     <label for="Graduation">Graduation Package</label>
                     <div class="service-description">
@@ -114,26 +114,25 @@
     </footer>
     <script>
       document.getElementById('standardPackageForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); 
 
-        // Retrieve selected services
+        
         const selectedServices = Array.from(document.querySelectorAll('input[name="service"]:checked'))
             .map(service => service.value);
 
-        // Add selected items to cart
+        
         addToCart(selectedServices);
 
-        // Show success message and redirect to cart page
-        //alert('Standard package submitted!');
+        
         window.location.href = 'cart.html';
           });
 
         function addToCart(selectedServices) {
-        // Example function to add items to cart (assuming you have a cart storage mechanism)
+        
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         selectedServices.forEach(service => {
-            const price = extractPrice(service); // Extract price from service description
+            const price = extractPrice(service); 
             cart.push({
                 name: service,
                 price: price
@@ -144,9 +143,9 @@
     }
 
      function extractPrice(service) {
-        // Function to extract price from service description
-        const priceRegexStandard = /Price: \$([\d,]+)/; // Regex for Standard.html format
-        const priceRegexCustomized = /\$([\d,]+)/; // Regex for Customized.html format
+        
+        const priceRegexStandard = /Price: \$([\d,]+)/; 
+        const priceRegexCustomized = /\$([\d,]+)/; 
 
         let match;
         if (service.includes('Price: $')) {
@@ -156,10 +155,10 @@
         }
 
         if (match) {
-            // Remove commas and parse as float
+           
             return parseFloat(match[1].replace(',', ''));
         } else {
-            return 0; // Return 0 if price extraction fails
+            return 0; 
         }
     }
     </script>

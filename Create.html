@@ -40,15 +40,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
    <script>
         document.getElementById('createAccountForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault(); 
 
             var username = document.getElementById('username').value.trim();
             var password = document.getElementById('password').value.trim();
 
-            // Update UI (e.g., show loading spinner)
+            
             alert('Account creation successful!');
 
-            // Generate XLSX file
+            
             var jsonData = [{ username: username, password: password }];
             var worksheet = XLSX.utils.json_to_sheet(jsonData);
             var wbout = XLSX.write({ Sheets: { 'Sheet1': worksheet }, SheetNames: ['Sheet1'] }, { bookType: 'xlsx', type: 'binary' });
@@ -64,7 +64,7 @@
 
             var blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
 
-            // Trigger GitHub Actions workflow to upload the file
+           
             uploadFileToGitHub(blob);
         });
 
@@ -75,11 +75,11 @@
             fetch('https://github.com/JLock334/LockedIn/tree/main/users', {
                 method: 'PUT',
                 headers: {
-                    'Authorization': '', // Replace with your GitHub token
+                    'Authorization': '', 
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    message: 'Update users.xlsx',  // Commit message
+                    message: 'Update users.xlsx',  
                     content: btoa(blob),
                     branch: 'main'
                 })
