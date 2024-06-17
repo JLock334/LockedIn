@@ -6,7 +6,7 @@
     <title>Cart</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-         .container {
+          .container {
             max-width: 800px;
             margin: auto;
             padding: 20px;
@@ -83,20 +83,21 @@
     <footer>
         <p>&copy; 2024 LockedIn Photography. All rights reserved.</p>
     </footer>
-    <script>
+   <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Retrieve selected services from local storage
-            let selectedServices = JSON.parse(localStorage.getItem('selectedServices')) || [];
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
             // Display selected services in cart
             const cartItemsContainer = document.getElementById('cartItems');
             let cartItemsHtml = '';
-            if (selectedServices.length > 0) {
-                selectedServices.forEach((service, index) => {
+            if (cart.length > 0) {
+                cart.forEach((item, index) => {
                     cartItemsHtml += `
                         <div class="cart-item">
                             <div>
-                                <p>${service}</p>
+                                <p>${item.name}</p>
+                                <p class="service-price">Price: $${item.price.toFixed(2)}</p>
                             </div>
                             <div>
                                 <span class="remove-btn" data-index="${index}">Remove</span>
@@ -111,8 +112,8 @@
 
             // Function to remove item from cart
             function removeItem(index) {
-                selectedServices.splice(index, 1);
-                localStorage.setItem('selectedServices', JSON.stringify(selectedServices));
+                cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
                 location.reload(); // Reload the page to reflect changes
             }
 
@@ -126,10 +127,7 @@
             });
 
             // Calculate subtotal, sales tax, and total
-            const subtotal = selectedServices.reduce((total, service) => {
-                const price = parseFloat(service.split('$')[1].trim().replace(',', ''));
-                return total + price;
-            }, 0);
+            const subtotal = cart.reduce((total, item) => total + item.price, 0);
             const salesTax = subtotal * 0.07;
             const total = subtotal + salesTax;
 
@@ -140,7 +138,7 @@
 
             // Checkout button functionality
             document.querySelector('.checkout-btn').addEventListener('click', function() {
-                localStorage.removeItem('selectedServices'); // Clear selected services from local storage
+                localStorage.removeItem('cart'); // Clear cart from local storage
                 window.location.href = 'Checkout.html'; // Redirect to checkout page
             });
         });
