@@ -1,5 +1,9 @@
 body {
-    background-color: lightblue
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: lightblue;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
