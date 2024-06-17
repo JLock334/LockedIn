@@ -38,76 +38,67 @@
         <p>&copy; 2024 Your Company. All rights reserved.</p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
-    <script>
+   <script>
         document.getElementById('createAccountForm').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent form submission
 
             var username = document.getElementById('username').value.trim();
             var password = document.getElementById('password').value.trim();
 
-            // Fetch existing users.xlsx from GitHub
-            fetch('https://github.com/JLock334/LockedIn/tree/main/users/users.xlsx')
-                .then(response => response.arrayBuffer())
-                .then(arrayBuffer => {
-                    var data = new Uint8Array(arrayBuffer);
-                    var arr = [];
-                    for (var i = 0; i < data.length; ++i) {
-                        arr[i] = String.fromCharCode(data[i]);
-                    }
-                    var bstr = arr.join('');
+            // Update UI (e.g., show loading spinner)
+            alert('Account creation successful!');
 
-                    // Convert XLSX to workbook object
-                    var workbook = XLSX.read(bstr, { type: 'binary' });
-                    var sheetName = workbook.SheetNames[0]; // Assuming the first sheet is users
-                    var worksheet = workbook.Sheets[sheetName];
-                    var jsonData = XLSX.utils.sheet_to_json(worksheet);
+            // Generate XLSX file
+            var jsonData = [{ username: username, password: password }];
+            var worksheet = XLSX.utils.json_to_sheet(jsonData);
+            var wbout = XLSX.write({ Sheets: { 'Sheet1': worksheet }, SheetNames: ['Sheet1'] }, { bookType: 'xlsx', type: 'binary' });
 
-                    // Check if username already exists
-                    var userExists = jsonData.some(function (user) {
-                        return user.username === username;
-                    });
+            function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i < s.length; i++) {
+                    view[i] = s.charCodeAt(i) & 0xFF;
+                }
+                return buf;
+            }
 
-                    if (userExists) {
-                        alert('Username already exists. Please choose another.');
-                    } else {
-                        // Add new user data to jsonData
-                        jsonData.push({ username: username, password: password });
+            var blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
 
-                        // Convert jsonData back to worksheet
-                        var newWorksheet = XLSX.utils.json_to_sheet(jsonData);
-
-                        // Update existing worksheet with new data
-                        workbook.Sheets[sheetName] = newWorksheet;
-
-                        // Convert workbook back to binary XLSX format
-                        var wbout = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
-
-                        // Function to convert s to array buffer
-                        function s2ab(s) {
-                            var buf = new ArrayBuffer(s.length);
-                            var view = new Uint8Array(buf);
-                            for (var i = 0; i < s.length; i++) {
-                                view[i] = s.charCodeAt(i) & 0xFF;
-                            }
-                            return buf;
-                        }
-
-                        // Save Excel file locally (for preview)
-                        var blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
-                        var url = URL.createObjectURL(blob);
-                        window.open(url);
-
-                        alert('Account created successfully!');
-
-                        // Optionally, update the file on GitHub using GitHub Actions
-                        // (See GitHub Actions workflow example below)
-                    }
-                })
-                .catch(error => {
-                    console.error('Failed to fetch users.xlsx:', error);
-                    alert('Failed to fetch users.xlsx. Please try again later.');
-                });
+            // Trigger GitHub Actions workflow to upload the file
+            uploadFileToGitHub(blob);
         });
+
+        function uploadFileToGitHub(blob) {
+            var formData = new FormData();
+            formData.append('file', blob, 'users.xlsx');
+
+            fetch('https://api.github.com/repos/JLock334/LockedIn/contents/users/users.xlsx', {
+                method: 'PUT',
+                headers: {
+                    'Authorization': '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', // Replace with your GitHub token
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: 'Update users.xlsx',  // Commit message
+                    content: btoa(blob),
+                    branch: 'main'
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to upload file to GitHub');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('File uploaded to GitHub successfully:', data);
+                alert('File uploaded to GitHub successfully!');
+            })
+            .catch(error => {
+                console.error('Error uploading file to GitHub:', error);
+                alert('Failed to upload file to GitHub. Please try again later.');
+            });
+        }
     </script>
 </body>
 </html>
