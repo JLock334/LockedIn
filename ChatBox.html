@@ -59,8 +59,7 @@ function sendMessage() {
     setTimeout(function() {
         displayMessage("Please hold on, connecting you to an agent...", 'bot');
         setTimeout(function() {
-            // Redirect to agent chat page after simulated delay
-            window.location.href = 'agent-chat.html'; // Replace with actual agent chat page
+            displayMessage("Waiting on agent", 'bot'); // Message indicating waiting on agent
         }, 1500);
     }, 1500);
 }
@@ -73,7 +72,6 @@ function displayMessage(message, sender) {
     chatMessages.appendChild(messageElement);
 }
 </script>
-
 </body>
 </html>
 
