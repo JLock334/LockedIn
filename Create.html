@@ -46,7 +46,7 @@
             var password = document.getElementById('password').value.trim();
 
             // Fetch existing users.xlsx from GitHub
-            fetch('https://github.com/JLock334/LockedIn/blob/main/users/users.xlsx')
+            fetch('https://github.com/JLock334/LockedIn/tree/main/users/users.xlsx')
                 .then(response => response.arrayBuffer())
                 .then(arrayBuffer => {
                     var data = new Uint8Array(arrayBuffer);
