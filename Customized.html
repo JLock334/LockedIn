@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customized Packages</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .service-item {
+            margin-bottom: 10px;
+        }
+        .service-item label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <ul>
@@ -22,15 +42,33 @@
     </ul>
     <h1>LockedIn Photography</h1>
     <main>
-        <section>
+        <div class="container">
             <h1>Customized Packages</h1>
-            <!-- Insert your customized packages information here -->
-            <ul>
-                <li>Custom Package 1</li>
-                <li>Custom Package 2</li>
-                <li>Custom Package 3</li>
-            </ul>
-        </section>
+
+            <form id="customPackageForm">
+                <div class="service-item">
+                    <input type="checkbox" id="weddingsEvents" name="service" value="Weddings & Events">
+                    <label for="weddingsEvents">Weddings & Events</label>
+                </div>
+
+                <div class="service-item">
+                    <input type="checkbox" id="portraits" name="service" value="Portraits">
+                    <label for="portraits">Portraits</label>
+                </div>
+
+                <div class="service-item">
+                    <input type="checkbox" id="commercialPhotography" name="service" value="Commercial Photography">
+                    <label for="commercialPhotography">Commercial Photography</label>
+                </div>
+
+                <div class="service-item">
+                    <input type="checkbox" id="photoEditing" name="service" value="Photo Editing & Retouching">
+                    <label for="photoEditing">Photo Editing & Retouching</label>
+                </div>
+
+                <button type="submit">Submit Customized Package</button>
+            </form>
+        </div>
     </main>
     <footer>
         <p>&copy; 2024 LockedIn Photography. All rights reserved.</p>
