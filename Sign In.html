@@ -39,8 +39,8 @@
         <p>&copy; 2024 LockedIn Photography. All rights reserved.</p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script> <!-- Include xlsx.full.min.js or appropriate library -->
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function (event) {
+   <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting
 
             var username = document.getElementById('username').value;
@@ -51,7 +51,7 @@
             xhr.open('GET', 'users/users.xlsx', true); // Load the Excel file from users/users.xlsx
             xhr.responseType = 'arraybuffer'; // Set response type to array buffer
 
-            xhr.onload = function (e) {
+            xhr.onload = function(e) {
                 var arraybuffer = xhr.response;
                 var data = new Uint8Array(arraybuffer);
                 var arr = [];
@@ -65,13 +65,14 @@
                 var jsonData = XLSX.utils.sheet_to_json(worksheet);
 
                 // Check if username and password match
-                var authenticated = jsonData.some(function (user) {
+                var authenticated = jsonData.some(function(user) {
                     return user.username === username && user.password === password;
                 });
 
                 if (authenticated) {
                     alert('Login successful!');
-                    // Redirect or perform other actions on success
+                    // Redirect to Profile.html on successful authentication
+                    window.location.href = 'Profile.html';
                 } else {
                     alert('Invalid username or password.');
                     // Handle incorrect credentials
