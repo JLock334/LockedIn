@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css" />
     <style>
 
-        .container {
+       .container {
             max-width: 800px;
             margin: auto;
             padding: 20px;
@@ -34,6 +34,10 @@
             border-radius: 5px;
             margin-bottom: 10px;
         }
+        .service-price {
+            font-weight: bold;
+            margin-top: 5px;
+        }
 
     </style>
     </head>
@@ -58,11 +62,12 @@
 
             <form id="standardPackageForm">
                 <div class="service-item">
-                    <img src="placeholder.jpg" alt="Placeholder for Wedding & Events">
+                    <img src="placeholder.jpg" alt="Wedding & Events">
                     <input type="checkbox" id="weddingsEvents" name="service" value="Weddings & Events">
-                    <label for="weddingsEvents">Weddings & Events</label>
+                    <label for="weddingsEvents">Weddings Videography and Photography</label>
                     <div class="service-description">
-                        <p>Description: Placeholder for weddings and events</p>
+                        <p>6 hours Wedding Coverage Comes with 1-2 photogrphers. Receives about 400-800 photos</p>
+                        <p class="service-price">Price: $2,000</p>
                     </div>
                 </div>
 
@@ -72,24 +77,27 @@
                     <label for="portraits">Portraits</label>
                     <div class="service-description">
                         <p>Description: Placeholder for portraits</p>
+                        <p class="service-price">Price: $</p>
                     </div>
                 </div>
 
                 <div class="service-item">
-                    <img src="placeholder.jpg" alt="Placeholder for Commercial Photography">
-                    <input type="checkbox" id="commercialPhotography" name="service" value="Commercial Photography">
-                    <label for="commercialPhotography">Commercial Photography</label>
+                    <img src="placeholder.jpg" alt="Event">
+                    <input type="checkbox" id="Event" name="service" value="Event Videos and Photography">
+                    <label for="Event">Event Videos and Photography</label>
                     <div class="service-description">
-                        <p>Description: Placeholder for commercial photography</p>
+                        <p> 2 production team The Main Event package includes two recap videos. The first video will be a highlight/recap video the event to promote the main video which can be on YouTube and range from 15-1hr long . This package must be book for Big shows with large crowds more than 250 people. Also comes with an photographer who will take photos for the event as well. 100-400 fully edited pictures.</p>
+                        <p class="service-price">Price: $950</p>
                     </div>
                 </div>
 
                 <div class="service-item">
-                    <img src="placeholder.jpg" alt="Placeholder for Photo Editing & Retouching">
-                    <input type="checkbox" id="photoEditing" name="service" value="Photo Editing & Retouching">
-                    <label for="photoEditing">Photo Editing & Retouching</label>
+                    <img src="placeholder.jpg" alt="Graduation">
+                    <input type="checkbox" id="Graduation" name="service" value="Graduation">
+                    <label for="Graduation">Graduation Package</label>
                     <div class="service-description">
-                        <p>Description: Placeholder for photo editing and retouching</p>
+                        <p>20 pictures fully edited. 1–3-minute 4K Video 1 to 3 outfits. Grad Gown is a free outfit as long (Optional add-ons) Extra Time $30 extra outfit $50 comes with 10 more pictures All Raw photos $100</p>
+                        <p class="service-price">Price: $400</p>
                     </div>
                 </div>
 
@@ -101,7 +109,7 @@
         <p>&copy; 2024 LockedIn Photography. All rights reserved.</p>
     </footer>
     <script>
-        document.getElementById('customPackageForm').addEventListener('submit', function(event) {
+        document.getElementById('standardPackageForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form submission
 
             // Retrieve selected services
@@ -113,7 +121,7 @@
             alert('Standard package submitted!');
 
             // Optional: Redirect or perform other actions after submission
-            // window.location.href = 'cart.html'; // Example redirect to cart page
+            window.location.href = 'Cart.html'; 
         });
     </script>
 </body>
