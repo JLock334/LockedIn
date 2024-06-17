@@ -105,20 +105,48 @@
     <footer>
         <p>&copy; 2024 LockedIn Photography. All rights reserved.</p>
     </footer>
-     <script>
-        document.getElementById('customPackageForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
+     <<script>
+    document.getElementById('standardPackageForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
 
-            // Retrieve selected services
-            const selectedServices = Array.from(document.querySelectorAll('input[name="service"]:checked'))
-                .map(service => service.value);
+        // Retrieve selected services
+        const selectedServices = Array.from(document.querySelectorAll('input[name="service"]:checked'))
+            .map(service => service.value);
 
-            // Store selected services in local storage (for demonstration purposes)
-            localStorage.setItem('selectedServices', JSON.stringify(selectedServices));
+        // Add selected items to cart
+        addToCart(selectedServices);
 
-            // Redirect to cart page
-            window.location.href = 'cart.html';
+        // Show success message and redirect to cart page
+        alert('Standard package submitted!');
+        window.location.href = 'cart.html';
+    });
+
+         function addToCart(selectedServices) {
+        // Example function to add items to cart (assuming you have a cart storage mechanism)
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        selectedServices.forEach(service => {
+            const price = extractPrice(service); // Extract price from service description
+            cart.push({
+                name: service,
+                price: price
+            });
         });
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function extractPrice(service) {
+        // Function to extract price from service description
+        const priceRegex = /Price: \$([\d,]+)/;
+        const match = service.match(priceRegex);
+        if (match) {
+            // Remove commas and parse as float
+            return parseFloat(match[1].replace(',', ''));
+        } else {
+            return 0; // Return 0 if price extraction fails
+        }
+    }
     </script>
 </body>
 </html>
