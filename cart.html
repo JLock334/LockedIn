@@ -65,7 +65,6 @@
     <footer>
         <p>&copy; 2024 LockedIn Photography. All rights reserved.</p>
     </footer>
-</body>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Retrieve selected services from local storage
@@ -85,7 +84,7 @@
 
             // Calculate total including sales tax (7%)
             const totalAmount = selectedServices.reduce((total, service) => {
-                const price = parseFloat(service.split('$')[1].replace(',', ''));
+                const price = parseFloat(service.split('$')[1].trim().replace(',', ''));
                 return total + price;
             }, 0);
             const salesTax = totalAmount * 0.07;
@@ -93,5 +92,10 @@
 
             // Display total amount with sales tax
             const cartTotalContainer = document.getElementById('cartTotal');
-            cartTotalContainer.innerHTML = `Total: $${total
+            cartTotalContainer.innerHTML = `Total: $${totalWithTax.toFixed(2)}`;
+        });
+    </script>
+</body>
+    
+    
 </html>
