@@ -118,11 +118,35 @@
 
             // You can now use `selectedServices` array to process further, like adding to cart or storing in session
             console.log('Selected Services:', selectedServices);
-            alert('Standard package submitted!');
 
-            // Optional: Redirect or perform other actions after submission
-            window.location.href = 'cart.html'; 
+            // Add selected items to cart (assuming you have a cart storage mechanism)
+            addToCart(selectedServices);
+
+            // Show success message and redirect to cart page
+            alert('Standard package submitted!');
+            window.location.href = 'cart.html';
         });
+
+        function addToCart(selectedServices) {
+            // Example function to add items to cart (assuming you have a cart storage mechanism)
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            selectedServices.forEach(service => {
+                cart.push({
+                    name: service,
+                    price: extractPrice(service) // Extract price from service description
+                });
+            });
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function extractPrice(service) {
+            // Function to extract price from service description
+            const priceRegex = /Price: \$(\d+(?:\.\d+)?)/;
+            const match = service.match(priceRegex);
+            return match ? parseFloat(match[1]) : 0;
+        }
     </script>
 </body>
 </html>
