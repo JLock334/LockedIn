@@ -60,7 +60,7 @@
                     }
                     var bstr = arr.join('');
 
-                    // Convert XLSX to JSON
+                    // Convert XLSX to workbook object
                     var workbook = XLSX.read(bstr, { type: 'binary' });
                     var sheetName = workbook.SheetNames[0]; // Assuming the first sheet is users
                     var worksheet = workbook.Sheets[sheetName];
@@ -74,18 +74,17 @@
                     if (userExists) {
                         alert('Username already exists. Please choose another.');
                     } else {
-                        // Add new user data
+                        // Add new user data to jsonData
                         jsonData.push({ username: username, password: password });
 
-                        // Convert JSON back to worksheet
+                        // Convert jsonData back to worksheet
                         var newWorksheet = XLSX.utils.json_to_sheet(jsonData);
 
-                        // Create a new workbook
-                        var newWorkbook = XLSX.utils.book_new();
-                        XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, sheetName);
+                        // Update existing worksheet with new data
+                        workbook.Sheets[sheetName] = newWorksheet;
 
-                        // Convert workbook to binary XLSX format
-                        var wbout = XLSX.write(newWorkbook, { bookType: 'xlsx', type: 'binary' });
+                        // Convert workbook back to binary XLSX format
+                        var wbout = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
 
                         // Function to convert s to array buffer
                         function s2ab(s) {
