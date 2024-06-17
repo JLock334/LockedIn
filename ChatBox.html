@@ -48,24 +48,21 @@
 </div>
 
 <script>
+// Initialize the chat with a welcome message
+displayMessage("How can I assist you today?", 'bot');
+
 function sendMessage() {
     var userInput = document.getElementById('user-input').value;
     displayMessage(userInput, 'user');
 
-    // Simulate automated responses
+    // Simulate connecting to an agent after user sends a message
     setTimeout(function() {
-        displayMessage("How can I assist you today?", 'bot');
+        displayMessage("Please hold on, connecting you to an agent...", 'bot');
         setTimeout(function() {
-            displayMessage("Please hold on, connecting you to an agent...", 'bot');
+            // Redirect to agent chat page after simulated delay
+            window.location.href = 'agent-chat.html'; // Replace with actual agent chat page
         }, 1500);
     }, 1500);
-
-    // Optionally, you can redirect to a real agent after the automated messages
-    setTimeout(function() {
-        // Replace with your actual agent connection logic
-        // For example, redirect to another page where an agent is available
-        window.location.href = 'agent-chat.html'; // Redirect to agent chat page
-    }, 4000);
 }
 
 function displayMessage(message, sender) {
