@@ -5,6 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .cart-item {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        .cart-item p {
+            margin: 5px 0;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
 </head>
 <body>
     <ul>
@@ -22,14 +50,48 @@
     </ul>
     <h1>LockedIn Photography</h1>
     <main>
-        <section>
-            <h1>Shopping Cart</h1>
-            <!-- Insert your shopping cart content here -->
-            <p>Your cart is empty.</p>
-        </section>
+        <div class="container">
+            <h2>Items in Your Cart</h2>
+
+            <div id="cartItems">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+
+            <div id="cartTotal" class="total">
+                <!-- Total amount will be calculated and displayed here -->
+            </div>
+        </div>
     </main>
     <footer>
         <p>&copy; 2024 LockedIn Photography. All rights reserved.</p>
     </footer>
 </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve selected services from local storage
+            const selectedServices = JSON.parse(localStorage.getItem('selectedServices'));
+
+            // Display selected services in cart
+            const cartItemsContainer = document.getElementById('cartItems');
+            let cartItemsHtml = '';
+            if (selectedServices && selectedServices.length > 0) {
+                selectedServices.forEach(service => {
+                    cartItemsHtml += `<div class="cart-item">${service}</div>`;
+                });
+            } else {
+                cartItemsHtml = '<p>Your cart is empty.</p>';
+            }
+            cartItemsContainer.innerHTML = cartItemsHtml;
+
+            // Calculate total including sales tax (7%)
+            const totalAmount = selectedServices.reduce((total, service) => {
+                const price = parseFloat(service.split('$')[1].replace(',', ''));
+                return total + price;
+            }, 0);
+            const salesTax = totalAmount * 0.07;
+            const totalWithTax = totalAmount + salesTax;
+
+            // Display total amount with sales tax
+            const cartTotalContainer = document.getElementById('cartTotal');
+            cartTotalContainer.innerHTML = `Total: $${total
 </html>
