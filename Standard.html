@@ -76,12 +76,28 @@
                     <label for="photoEditing">Photo Editing & Retouching</label>
                 </div>
 
-                <button type="submit">Submit Customized Package</button>
+                <button type="submit">Submit Standard Package</button>
             </form>
         </div>
     </main>
     <footer>
         <p>&copy; 2024 LockedIn Photography. All rights reserved.</p>
     </footer>
+    <script>
+        document.getElementById('customPackageForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Retrieve selected services
+            const selectedServices = Array.from(document.querySelectorAll('input[name="service"]:checked'))
+                .map(service => service.value);
+
+            // You can now use `selectedServices` array to process further, like adding to cart or storing in session
+            console.log('Selected Services:', selectedServices);
+            alert('Standard package submitted!');
+
+            // Optional: Redirect or perform other actions after submission
+            // window.location.href = 'cart.html'; // Example redirect to cart page
+        });
+    </script>
 </body>
 </html>
