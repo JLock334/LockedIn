@@ -6,7 +6,7 @@
     <title>Cart</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-        .container {
+         .container {
             max-width: 800px;
             margin: auto;
             padding: 20px;
@@ -19,18 +19,25 @@
             margin-bottom: 10px;
             border-bottom: 1px solid #ccc;
             padding-bottom: 10px;
-        }
-        .cart-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .cart-item p {
             margin: 5px 0;
         }
-        .total {
+        .remove-btn {
+            cursor: pointer;
+            color: red;
+        }
+        .cart-summary {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-weight: bold;
-            font-size: 1.2em;
         }
     </style>
 </head>
@@ -57,8 +64,17 @@
                 <!-- Cart items will be dynamically added here -->
             </div>
 
-            <div id="cartTotal" class="total">
-                <!-- Total amount will be calculated and displayed here -->
+            <div class="cart-summary">
+                <div>
+                    <p>Subtotal:</p>
+                    <p>Sales Tax (7%):</p>
+                    <p>Total:</p>
+                </div>
+                <div>
+                    <p id="subtotal">$0.00</p>
+                    <p id="salesTax">$0.00</p>
+                    <p id="total">$0.00</p>
+                </div>
             </div>
         </div>
     </main>
@@ -68,31 +84,57 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Retrieve selected services from local storage
-            const selectedServices = JSON.parse(localStorage.getItem('selectedServices'));
+            let selectedServices = JSON.parse(localStorage.getItem('selectedServices')) || [];
 
             // Display selected services in cart
             const cartItemsContainer = document.getElementById('cartItems');
             let cartItemsHtml = '';
-            if (selectedServices && selectedServices.length > 0) {
-                selectedServices.forEach(service => {
-                    cartItemsHtml += `<div class="cart-item">${service}</div>`;
+            if (selectedServices.length > 0) {
+                selectedServices.forEach((service, index) => {
+                    cartItemsHtml += `
+                        <div class="cart-item">
+                            <div>
+                                <p>${service}</p>
+                            </div>
+                            <div>
+                                <span class="remove-btn" data-index="${index}">Remove</span>
+                            </div>
+                        </div>
+                    `;
                 });
             } else {
                 cartItemsHtml = '<p>Your cart is empty.</p>';
             }
             cartItemsContainer.innerHTML = cartItemsHtml;
 
-            // Calculate total including sales tax (7%)
-            const totalAmount = selectedServices.reduce((total, service) => {
+            // Function to remove item from cart
+            function removeItem(index) {
+                selectedServices.splice(index, 1);
+                localStorage.setItem('selectedServices', JSON.stringify(selectedServices));
+                location.reload(); // Reload the page to reflect changes
+            }
+
+            // Event listener for remove buttons
+            const removeButtons = document.querySelectorAll('.remove-btn');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    removeItem(index);
+                });
+            });
+
+            // Calculate subtotal, sales tax, and total
+            const subtotal = selectedServices.reduce((total, service) => {
                 const price = parseFloat(service.split('$')[1].trim().replace(',', ''));
                 return total + price;
             }, 0);
-            const salesTax = totalAmount * 0.07;
-            const totalWithTax = totalAmount + salesTax;
+            const salesTax = subtotal * 0.07;
+            const total = subtotal + salesTax;
 
-            // Display total amount with sales tax
-            const cartTotalContainer = document.getElementById('cartTotal');
-            cartTotalContainer.innerHTML = `Total: $${totalWithTax.toFixed(2)}`;
+            // Display calculated values
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('salesTax').textContent = `$${salesTax.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
         });
     </script>
 </body>
