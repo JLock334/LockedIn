@@ -106,7 +106,7 @@
         <p>&copy; 2024 LockedIn Photography. All rights reserved.</p>
     </footer>
      <<script>
-    document.getElementById('standardPackageForm').addEventListener('submit', function(event) {
+    document.getElementById('customPackageForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form submission
 
         // Retrieve selected services
@@ -116,8 +116,7 @@
         // Add selected items to cart
         addToCart(selectedServices);
 
-        // Show success message and redirect to cart page
-        alert('Standard package submitted!');
+        // Redirect to cart page
         window.location.href = 'cart.html';
     });
 
