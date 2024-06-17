@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Box</title>
+<style>
+    /* Basic styling for the chat box */
+    .chatbox {
+        width: 300px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 20px;
+        font-family: Arial, sans-serif;
+    }
+    .messages {
+        height: 300px;
+        overflow-y: scroll;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
+    .user-input {
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="chatbox">
+    <div class="messages" id="chat-messages">
+        <!-- Messages will be inserted here -->
+    </div>
+    <div class="user-input">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+function sendMessage() {
+    var userInput = document.getElementById('user-input').value;
+    displayMessage(userInput, 'user');
+
+    // Simulate automated responses
+    setTimeout(function() {
+        displayMessage("How can I assist you today?", 'bot');
+        setTimeout(function() {
+            displayMessage("Please hold on, connecting you to an agent...", 'bot');
+        }, 1500);
+    }, 1500);
+
+    // Optionally, you can redirect to a real agent after the automated messages
+    setTimeout(function() {
+        // Replace with your actual agent connection logic
+        // For example, redirect to another page where an agent is available
+        window.location.href = 'agent-chat.html'; // Redirect to agent chat page
+    }, 4000);
+}
+
+function displayMessage(message, sender) {
+    var chatMessages = document.getElementById('chat-messages');
+    var messageElement = document.createElement('div');
+    messageElement.classList.add('message', sender);
+    messageElement.innerText = message;
+    chatMessages.appendChild(messageElement);
+}
+</script>
+
+</body>
+</html>
 
