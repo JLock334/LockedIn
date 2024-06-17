@@ -57,7 +57,7 @@
     </ul>
     <h1>LockedIn Photography</h1>
     <main>
-        <div class="container">
+         <div class="container">
             <h2>Items in Your Cart</h2>
 
             <div id="cartItems">
@@ -76,6 +76,8 @@
                     <p id="total">$0.00</p>
                 </div>
             </div>
+
+            <button class="checkout-btn">Checkout</button>
         </div>
     </main>
     <footer>
@@ -135,6 +137,12 @@
             document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
             document.getElementById('salesTax').textContent = `$${salesTax.toFixed(2)}`;
             document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+
+            // Checkout button functionality
+            document.querySelector('.checkout-btn').addEventListener('click', function() {
+                localStorage.removeItem('selectedServices'); // Clear selected services from local storage
+                window.location.href = 'checkout.html'; // Redirect to checkout page
+            });
         });
     </script>
 </body>
