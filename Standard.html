@@ -142,10 +142,18 @@
         localStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    function extractPrice(service) {
+     function extractPrice(service) {
         // Function to extract price from service description
-        const priceRegex = /Price: \$([\d,]+)/;
-        const match = service.match(priceRegex);
+        const priceRegexStandard = /Price: \$([\d,]+)/; // Regex for Standard.html format
+        const priceRegexCustomized = /\$([\d,]+)/; // Regex for Customized.html format
+
+        let match;
+        if (service.includes('Price: $')) {
+            match = service.match(priceRegexStandard);
+        } else {
+            match = service.match(priceRegexCustomized);
+        }
+
         if (match) {
             // Remove commas and parse as float
             return parseFloat(match[1].replace(',', ''));
@@ -153,7 +161,6 @@
             return 0; // Return 0 if price extraction fails
         }
     }
-
     </script>
 </body>
 </html>
