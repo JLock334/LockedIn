@@ -132,30 +132,31 @@
         });
 
         function addToCart(selectedServices) {
-            // Example function to add items to cart (assuming you have a cart storage mechanism)
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // Example function to add items to cart (assuming you have a cart storage mechanism)
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            selectedServices.forEach(service => {
-                cart.push({
-                    name: service,
-                    price: extractPrice(service) // Extract price from service description
-                });
+        selectedServices.forEach(service => {
+            const price = extractPrice(service); // Extract price from service description
+            cart.push({
+                name: service,
+                price: price
             });
+        });
 
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-        function extractPrice(service) {
-    // Function to extract price from service description
-    const priceRegex = /Price: \$([\d,]+)/;
-    const match = service.match(priceRegex);
-    if (match) {
-        // Remove commas and parse as float
-        return parseFloat(match[1].replace(',', ''));
-    } else {
-        return 0; // Return 0 if price extraction fails
+        localStorage.setItem('cart', JSON.stringify(cart));
     }
-}
+
+    function extractPrice(service) {
+        // Function to extract price from service description
+        const priceRegex = /Price: \$([\d,]+)/;
+        const match = service.match(priceRegex);
+        if (match) {
+            // Remove commas and parse as float
+            return parseFloat(match[1].replace(',', ''));
+        } else {
+            return 0; // Return 0 if price extraction fails
+        }
+    }
 
     </script>
 </body>
